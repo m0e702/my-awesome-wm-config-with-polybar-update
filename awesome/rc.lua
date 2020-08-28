@@ -255,6 +255,13 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control"    }, "Down",     function () awful.client.incwfact( 0.01)    end),
     awful.key({ modkey, "Control"    }, "Up",     function () awful.client.incwfact(-0.01)    end),
 
+    -- spotify
+
+    awful.key({ modkey, "Shift" }, "s",     function () awful.util.spawn("spotify") end,
+              {description = "run spotify", group = "launcher"}),
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
     awful.key({ modkey },            "r",     function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu") end,
               {description = "run prompt", group = "launcher"}),
 

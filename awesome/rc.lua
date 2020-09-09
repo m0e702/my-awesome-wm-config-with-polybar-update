@@ -147,7 +147,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "hack", "web", "files", "Dev", "ctf", "vpn"}, s, awful.layout.layouts[1])
+    awful.tag({ "web", "hacking", "files", "Dev", "ctf", "music","games","OBS","vpn"}, s, awful.layout.layouts[1])
 
 end)
 -- }}}
@@ -213,8 +213,8 @@ globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey, "Control" }, "t", function () awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
-
+              {description = "open a xfce4-terminal", group = "launcher"}),
+    
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
@@ -260,7 +260,11 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift" }, "s",     function () awful.util.spawn("spotify") end,
               {description = "run spotify", group = "launcher"}),
 
-------------------------------------------------------------------------------------------------------------------------------------------------
+    -- terminator
+
+    awful.key({ modkey, "Shift" }, "t",     function () awful.util.spawn("terminator") end,
+              {description = "run terminator", group = "launcher"}),
+
 
     awful.key({ modkey },            "r",     function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu") end,
               {description = "run prompt", group = "launcher"}),
@@ -449,17 +453,8 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
-
-    -- -- Add titlebars to normal clients and dialogs
-    -- { rule_any = {type = { "normal", "dialog" }
-    --   }, properties = { titlebars_enabled = true }
-    -- },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
--- }}}
+
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
@@ -476,50 +471,6 @@ client.connect_signal("manage", function (c)
     end
 end)
 
--- -- Add a titlebar if titlebars_enabled is set to true in the rules.
--- client.connect_signal("request::titlebars", function(c)
---     -- buttons for the titlebar
---     local buttons = gears.table.join(
---         awful.button({ }, 1, function()
---             c:emit_signal("request::activate", "titlebar", {raise = true})
---             awful.mouse.client.move(c)
---         end),
---         awful.button({ }, 3, function()
---             c:emit_signal("request::activate", "titlebar", {raise = true})
---             awful.mouse.client.resize(c)
---         end)
---     )
-
---     awful.titlebar(c) : setup {
---         { -- Left
---             awful.titlebar.widget.iconwidget(c),
---             buttons = buttons,
---             layout  = wibox.layout.fixed.horizontal
---         },
---         { -- Middle
---             { -- Title
---                 align  = "center",
---                 widget = awful.titlebar.widget.titlewidget(c)
---             },
---             buttons = buttons,
---             layout  = wibox.layout.flex.horizontal
---         },
---         { -- Right
---             awful.titlebar.widget.floatingbutton (c),
---             awful.titlebar.widget.maximizedbutton(c),
---             awful.titlebar.widget.stickybutton   (c),
---             awful.titlebar.widget.ontopbutton    (c),
---             awful.titlebar.widget.closebutton    (c),
---             layout = wibox.layout.fixed.horizontal()
---         },
---         layout = wibox.layout.align.horizontal
---     }
--- end)
-
--- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---     c:emit_signal("request::activate", "mouse_enter", {raise = false})
--- end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)

@@ -479,7 +479,9 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- auto launchs
 
 awful.spawn.with_shell("/home/flagmate/.config/polybar/launch.sh")
-awful.spawn.with_shell("compton")
-awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("kmix")
 
+awful.spawn.with_shell("compton")
+
+awful.spawn.with_shell("feh --randomize --bg-fill ~/Pictures/backgrounds/*")
+
+awful.spawn.with_shell("kmix")

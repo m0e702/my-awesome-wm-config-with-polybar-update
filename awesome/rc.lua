@@ -147,7 +147,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "web", "Developing", "files", "hacking", "ctf", "music","games","OBS","vpn"}, s, awful.layout.layouts[1])
+    awful.tag({ "web", "Developing", "terminal", "files", "hacking", "music","games","OBS","vpn"}, s, awful.layout.layouts[1])
 
 end)
 -- }}}
@@ -215,7 +215,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "t", function () awful.spawn(terminal) end,
               {description = "open a xfce4-terminal", group = "launcher"}),
     
-    awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Shift" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -266,15 +266,11 @@ globalkeys = gears.table.join(
               {description = "run terminator", group = "launcher"}),
 
 
-    awful.key({ modkey}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/Menu") end,
-              {description = "run prompt", group = "launcher"}),
-    
-    awful.key({modkey, "Shift"}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/color-switch.sh") end,
-              {description= "change the polybar Theme", group="launcher"}),
+    awful.key({modkey }, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu") end,
+              {description= "menu", group="launcher"}),
 
-
-    awful.key({modkey, "Shift"}, "f", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu_full") end,
-              {description= "change the polybar Theme", group="launcher"}),
+    awful.key({modkey, "Control"}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu_full") end,
+              {description= "full menu", group="launcher"}),
 
 
     awful.key({ modkey, "Control" }, "f",     function () awful.util.spawn("thunar") end,
@@ -286,14 +282,14 @@ globalkeys = gears.table.join(
     awful.key({ modkey , "Control" }, "s",     function () awful.util.spawn("subl") end,
               {description = "run subllime text 3", group = "launcher"}),
 
---    awful.key({ modkey , "Control" }, "v",     function () awful.util.spawn("code") end,
---              {description = "run vs code", group = "launcher"}),
+   awful.key({ modkey , "Control" }, "v",     function () awful.util.spawn("code-insiders") end,
+             {description = "run vs code", group = "launcher"}),
 
---    awful.key({ modkey , "Control" }, "g",     function () awful.util.spawn("gimp") end,
---              {description = "run gimp", group = "launcher"}),
+   awful.key({ modkey , "Control" }, "g",     function () awful.util.spawn("gimp") end,
+             {description = "run gimp", group = "launcher"}),
 
---    awful.key({ modkey , "Control" }, "b",     function () awful.util.spawn("burpsuite") end,
---              {description = "run burpsuite", group = "launcher"}),
+   awful.key({ modkey , "Shift" }, "b",     function () awful.util.spawn("burpsuite") end,
+             {description = "run burpsuite", group = "launcher"}),
 
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,

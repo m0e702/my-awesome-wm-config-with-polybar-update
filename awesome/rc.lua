@@ -147,7 +147,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "web", "hacking", "files", "Dev", "ctf", "music","games","OBS","vpn"}, s, awful.layout.layouts[1])
+    awful.tag({ "web", "Developing", "files", "hacking", "ctf", "music","games","OBS","vpn"}, s, awful.layout.layouts[1])
 
 end)
 -- }}}
@@ -257,8 +257,8 @@ globalkeys = gears.table.join(
 
     -- spotify
 
-    awful.key({ modkey, "Shift" }, "s",     function () awful.util.spawn("spotify") end,
-              {description = "run spotify", group = "launcher"}),
+--    awful.key({ modkey, "Shift" }, "s",     function () awful.util.spawn("spotify") end,
+--              {description = "run spotify", group = "launcher"}),
 
     -- terminator
 
@@ -266,26 +266,34 @@ globalkeys = gears.table.join(
               {description = "run terminator", group = "launcher"}),
 
 
-    awful.key({ modkey },            "r",     function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu") end,
+    awful.key({ modkey}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/Menu") end,
               {description = "run prompt", group = "launcher"}),
+    
+    awful.key({modkey, "Shift"}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/color-switch.sh") end,
+              {description= "change the polybar Theme", group="launcher"}),
+
+
+    awful.key({modkey, "Shift"}, "f", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu_full") end,
+              {description= "change the polybar Theme", group="launcher"}),
+
 
     awful.key({ modkey, "Control" }, "f",     function () awful.util.spawn("thunar") end,
               {description = "run thunar", group = "launcher"}),
 
-    awful.key({ modkey , "Control" }, "c",     function () awful.util.spawn("google-chrome") end,
+    awful.key({ modkey , "Control" }, "b",     function () awful.util.spawn("firefox-esr") end,
               {description = "run Chrome", group = "launcher"}),
 
     awful.key({ modkey , "Control" }, "s",     function () awful.util.spawn("subl") end,
               {description = "run subllime text 3", group = "launcher"}),
 
-    awful.key({ modkey , "Control" }, "v",     function () awful.util.spawn("code") end,
-              {description = "run vs code", group = "launcher"}),
+--    awful.key({ modkey , "Control" }, "v",     function () awful.util.spawn("code") end,
+--              {description = "run vs code", group = "launcher"}),
 
-    awful.key({ modkey , "Control" }, "g",     function () awful.util.spawn("gimp") end,
-              {description = "run gimp", group = "launcher"}),
+--    awful.key({ modkey , "Control" }, "g",     function () awful.util.spawn("gimp") end,
+--              {description = "run gimp", group = "launcher"}),
 
-    awful.key({ modkey , "Control" }, "b",     function () awful.util.spawn("burpsuite") end,
-              {description = "run burpsuite", group = "launcher"}),
+--    awful.key({ modkey , "Control" }, "b",     function () awful.util.spawn("burpsuite") end,
+--              {description = "run burpsuite", group = "launcher"}),
 
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
@@ -479,8 +487,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- auto launchs
 
 awful.spawn.with_shell("/home/flagmate/.config/polybar/launch.sh")
-
-awful.spawn.with_shell("compton")
 
 awful.spawn.with_shell("feh --randomize --bg-fill ~/Pictures/backgrounds/*")
 

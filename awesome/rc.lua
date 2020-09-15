@@ -63,7 +63,6 @@ terminal = "xfce4-terminal"
 editor = os.getenv("subl") or "subl"
 editor_cmd = terminal .. " -e " .. editor
 
-
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -73,22 +72,16 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.fair,
-    -- awful.layout.suit.tile,
+    awful.layout.suit.corner.nw, 
+    awful.layout.suit.corner.ne, 
+    awful.layout.suit.corner.sw, 
+    awful.layout.suit.corner.se, 
+    awful.layout.suit.fair, 
+    awful.layout.suit.fair.horizontal, 
+    awful.layout.suit.tile, 
+    awful.layout.suit.tile.top, 
+    awful.layout.suit.spiral, 
     awful.layout.suit.floating,
---     awful.layout.suit.tile.left,
---     awful.layout.suit.tile.bottom,
---     awful.layout.suit.tile.top,
---     awful.layout.suit.fair.horizontal,
---     awful.layout.suit.spiral,
---     awful.layout.suit.spiral.dwindle,
---     awful.layout.suit.max,
---     awful.layout.suit.max.fullscreen,
---     awful.layout.suit.magnifier,
---     awful.layout.suit.corner.nw,
---     awful.layout.suit.corner.ne,
---     awful.layout.suit.corner.sw,
---     awful.layout.suit.corner.se,
 }
 -- }}}
 
@@ -215,7 +208,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Control" }, "t", function () awful.spawn(terminal) end,
               {description = "open a xfce4-terminal", group = "launcher"}),
     
-    awful.key({ modkey, "Shift" }, "r", awesome.restart,
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
@@ -269,27 +262,30 @@ globalkeys = gears.table.join(
     awful.key({modkey }, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu") end,
               {description= "menu", group="launcher"}),
 
-    awful.key({modkey, "Control"}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu_full") end,
+    awful.key({modkey, "Shift"}, "r", function () awful.util.spawn("/home/flagmate/.config/polybar/scripts/menu_full") end,
               {description= "full menu", group="launcher"}),
 
 
     awful.key({ modkey, "Control" }, "f",     function () awful.util.spawn("thunar") end,
               {description = "run thunar", group = "launcher"}),
 
+    awful.key({ modkey , "Control" }, "c",     function () awful.util.spawn("google-chrome") end,
+             {description = "run google chrome", group = "launcher"}),
+
     awful.key({ modkey , "Control" }, "b",     function () awful.util.spawn("firefox-esr") end,
-              {description = "run Chrome", group = "launcher"}),
+              {description = "run Firefox", group = "launcher"}),
 
     awful.key({ modkey , "Control" }, "s",     function () awful.util.spawn("subl") end,
-              {description = "run subllime text 3", group = "launcher"}),
+              {description = "run subllime text 3", group = "security"}),
 
-   awful.key({ modkey , "Control" }, "v",     function () awful.util.spawn("code-insiders") end,
+    awful.key({ modkey , "Control" }, "v",     function () awful.util.spawn("code-insiders") end,
              {description = "run vs code", group = "launcher"}),
 
-   awful.key({ modkey , "Control" }, "g",     function () awful.util.spawn("gimp") end,
+    awful.key({ modkey , "Control" }, "g",     function () awful.util.spawn("gimp") end,
              {description = "run gimp", group = "launcher"}),
 
-   awful.key({ modkey , "Shift" }, "b",     function () awful.util.spawn("burpsuite") end,
-             {description = "run burpsuite", group = "launcher"}),
+    awful.key({ modkey , "Shift" }, "b",     function () awful.util.spawn("burpsuite") end,
+             {description = "run burpsuite", group = "security"}),
 
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
